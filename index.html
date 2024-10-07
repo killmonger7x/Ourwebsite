@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Modal backdrop */
+    .modal {
+      display: none; /* Ensure modals are hidden by default */
+      position: fixed;
+      z-index: 50;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Modal content */
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    /* Flip card styles remain unchanged */
+    .flip-card {
+      background-color: transparent;
+      width: 200px;
+      height: 250px;
+      perspective: 1000px; /* Perspective for the 3D flip effect */
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden; /* For Safari */
+      backface-visibility: hidden;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .flip-card-front {
+      background-color: #fff;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 5px solid white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .flip-card-back {
+      background-color: #f8f9fa;
+      color: black;
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column; /* Added to stack items vertically */
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 50px;
+        justify-items: center;
+        max-height: 500px; /* Set a max height for the grid */
+        overflow-y: auto;  /* Enable vertical scrolling */
+        padding-right: 10px; /* Prevent scrollbar overlap */
+    }
+  </style>
+</head>
+<body class="bg-purple-300 flex justify-center items-center min-h-screen">
+
+  <div class="text-center">
+    <h1 class="text-4xl font-bold mb-10">Welcome to Our Website</h1>
+
+    <!-- Icon Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+      
+      <!-- Icon 1: About Us -->
+      <div class="flex flex-col items-center space-y-2 cursor-pointer" onclick="openModal('aboutModal')">
+        <img src="pics/group.png" alt="About Us" class="w-20 h-20">
+        <span class="text-lg font-semibold">About Us</span>
+      </div>
+
+      <!-- Icon 2: Gallery -->
+      <div class="flex flex-col items-center space-y-2 cursor-pointer" onclick="openModal('galleryModal')">
+        <img src="pics/gallery.png" alt="Gallery" class="w-20 h-20">
+        <span class="text-lg font-semibold">Photo Gallery</span>
+      </div>
+
+      <!-- Icon 3: Countdown -->
+      <div class="flex flex-col items-center space-y-2 cursor-pointer" onclick="openModal('countdownModal')">
+        <img src="pics/stopwatch.png" alt="Countdown" class="w-20 h-20">
+        <span class="text-lg font-semibold">Together</span>
+      </div>
+  </div>
+
+  <!-- Modals -->
+
+  <!-- About Us Modal -->
+  <div id="aboutModal" class="modal flex">
+    <div class="modal-content">
+      <h2 class="text-3xl font-bold mb-4 text-center">About Us</h2>
+      <p class="mb-3 text-gray-800">Our story begin the 13 March 2024, when we first matched on BOO...</p>
+      <button onclick="closeModal('aboutModal')" class="mt-4 bg-purple-500 px-4 py-2 rounded text-white">Close</button>
+    </div>
+  </div>
+
+  <!-- Gallery Modal -->
+  <div id="galleryModal" class="modal flex">
+    <div class="modal-content">
+      <h2 class="text-3xl font-bold mb-4 text-center">Photo Gallery</h2>
+
+      <!-- Flip Card Gallery Grid -->
+      <div class="gallery-grid">
+        <!-- Instax Picture 1 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="x/p1.jpg" alt="Instax 1" class="object-cover w-full h-full">
+            </div>
+            <div class="flip-card-back">
+              <p>"You are my sunshine!"</p>
+              <p class="text-sm text-gray-500">Date: 2024-10-05</p>
+              <p class="text-sm text-gray-500">Location: Rabat</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instax Picture 2 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="x/p2.jpg" alt="Instax 2" class="object-cover w-full h-full">
+            </div>
+            <div class="flip-card-back">
+              <p>"Together is a wonderful place to be."</p>
+              <p class="text-sm text-gray-500">Date: 2024-10-05</p>
+              <p class="text-sm text-gray-500">Location: Rabat</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instax Picture 3 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="x/p3.jpg" alt="Instax 3" class="object-cover w-full h-full">
+            </div>
+            <div class="flip-card-back">
+              <p>"Forever starts here."</p>
+              <p class="text-sm text-gray-500">Date: 2024-10-05</p>
+              <p class="text-sm text-gray-500">Location: Rabat</p>
+            </div>
+          </div>
+        </div>
+        <!-- Instax Picture 4 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="x/p4.jpg" alt="Instax 4" class="object-cover w-full h-full">
+            </div>
+            <div class="flip-card-back">
+              <p>"You complete me."</p>
+              <p class="text-sm text-gray-500">Date: 2024-10-05</p>
+              <p class="text-sm text-gray-500">Location: Rabat</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+      <button onclick="closeModal('galleryModal')" class="mt-4 bg-purple-500 px-4 py-2 rounded text-white">Close</button>
+    </div>
+  </div>
+
+<!-- Countdown Modal -->
+    <div id="countdownModal" class="modal flex hidden">
+        <div class="modal-content">
+            <div id="countdown" class="text-2xl font-bold mb-4 text-center"></div>
+            <button onclick="closeModal('countdownModal')" class="mt-4 bg-red-500 px-4 py-2 rounded text-white">Close</button>
+        </div>
+    </div>
+      <!-- Footer -->
+  <script>
+    // Function to open the modal
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'flex';
+
+      // Start countdown if opening countdown modal
+      if (modalId === 'countdownModal') {
+        startCountdown(); // Start the countdown
+      }
+    }
+
+    // Function to close the modal
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+
+    // Countdown Function
+   // Function to start the days counter
+// Function to start the full date counter
+    function startFullCounter() {
+    const startDate = new Date("March 13, 2024 00:00:00").getTime();
+
+    const x = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = now - startDate;
+
+        // Time calculations
+        const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+        const months = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+        const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+
+        // Display the result in the element with id="countdown"
+        document.getElementById("countdown").innerHTML = 
+            years + " years, " + 
+            months + " months, " + 
+            days + " days" +  " together and more Inshallah ❤️";
+
+    }, 1000); // Update every second
+}
+
+// Start the full counter when the modal opens
+    function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'flex';
+    if (modalId === 'countdownModal') {
+        startFullCounter(); // Start counting when the modal is opened
+    }
+}
+
+  </script>
+  <!-- Footer -->
+<footer class="bg-purple-600 text-white text-center py-4 mt-20">
+    <p>&copy; 2024 Our Journey Together. All rights reserved.</p>
+    <p>&copy; Made with Love for the love of my life ❤️</p>
+</footer>
+
+</body>
+</html>
